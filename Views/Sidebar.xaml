@@ -5,95 +5,60 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SoftwareFB_DISTRIBUIDORA.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="150"
-             MinWidth="50" MaxWidth="150">
-    
-    <StackPanel Background="{StaticResource CorPrimaria}">
-        <TextBlock Text="Comanda" Foreground="White" TextAlignment="Center" VerticalAlignment="Center" Height="50"/>
-        <TextBlock Text="PDV" Foreground="White" Height="50" TextAlignment="Center"/>
-        <TextBlock Text="Vendas" Foreground="White" Height="50" TextAlignment="Center"/>
-        <TextBlock Text="Produto" Foreground="White" Height="50" TextAlignment="Center"/>
-        <TextBlock Text="Estoque" Foreground="White" Height="50" TextAlignment="Center"/>
-        <TextBlock Text="Configuração" Foreground="White" Height="50" TextAlignment="Center"/>
-        <Border BorderBrush="{x:Null}" Height="50">
-            <TextBlock TextWrapping="Wrap" Foreground="White" Text="Some Text" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        </Border>
-    </StackPanel>
-    
+             d:DesignHeight="720" d:DesignWidth="200"
+             MinWidth="65" MaxWidth="200">
 
-  
 
-    <!--<Grid   x:Name="nav_pnl"
+    <Grid   x:Name="nav_pnl"
                 HorizontalAlignment="Left"
                 Width="65"
                 Background="#2E333A">
 
-        --><!--<Grid x:Name="BG" PreviewMouseLeftButtonDown="BG_PreviewMouseLeftButtonDown">
-
-            <Grid.Background>
-
-                <ImageBrush x:Name="img_bg"
-                            Stretch="Fill"/>
-
-            </Grid.Background>
-
-        </Grid>--><!--
-        
-        <StackPanel x:Name="st_pnl">
-
-            --><!--// Grid for the Menu Toggle Button //--><!--
+        <StackPanel>
 
             <Grid Height="90">
 
-                --><!--// Menu title text //--><!--
+                <!--// Menu title text //-->
 
                 <TextBlock  Grid.Row="1"
-                                Grid.Column="0"
-                                Margin="73,-20,0,0"
-                                Text="M E N U"
-                                Foreground="White"
-                                FontSize="22"
-                                Background="Transparent"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Style="{StaticResource font_style}">
-                        
-                        --><!--// Shadow Effect //--><!--
+                    Grid.Column="0"
+                    Margin="73,0,0,0"
+                    Text="M E N U"
+                    Foreground="White"
+                    FontSize="22"
+                    Background="Transparent"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Style="{StaticResource font_style}">
+            
+                    <!--// Shadow Effect //-->
 
                     <TextBlock.Effect>
 
                         <DropShadowEffect  BlurRadius="10"
-                                                ShadowDepth="1"
-                                                Direction="-90"
-                                                Color="White"/>
+                                    ShadowDepth="1"
+                                    Direction="-90"
+                                    Color="White"/>
 
                     </TextBlock.Effect>
 
                 </TextBlock>
 
-                --><!--// Toggle Button //--><!--
+                <!--// Toggle Button //-->
 
                 <ToggleButton x:Name="Tg_Btn"
-                                    Grid.Column="0"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Left"
-                                    Margin="18,-20,0,0"
-                                    Height="30"
-                                    Width="30"
-                                    BorderThickness="0">
-                    --><!--Unchecked="Tg_Btn_Unchecked" Checked="Tg_Btn_Checked">-->
+                        Grid.Column="0"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="18,0,0,0"
+                        Height="30"
+                        Width="30"
+                        BorderThickness="0"
+                        Style="{StaticResource FlatImageToggleButton}">
 
-                    <!--// Toggle button default background image //--><!--
+                    <!--// Toggle Button - Checked, Unchecked events //-->
 
-                    <ToggleButton.Background>
-
-                        <ImageBrush ImageSource="/Resources/Assets/img_menu.png" Stretch="Fill"/>
-
-                    </ToggleButton.Background>
-
-                    --><!--// Toggle Button - Checked, Unchecked events //-->
-
-                    <!--<ToggleButton.Triggers>
+                    <ToggleButton.Triggers>
 
                         <EventTrigger RoutedEvent="ToggleButton.Unchecked">
 
@@ -102,12 +67,12 @@
                                 <Storyboard x:Name="HideStackPanel">
 
                                     <DoubleAnimation    
-                                            
-                                            Storyboard.TargetName="nav_pnl"
-                                            Storyboard.TargetProperty="Width"
-                                            BeginTime="0:0:0"
-                                            From="230" To="65"
-                                            Duration="0:0:0.2">
+                                
+                                        Storyboard.TargetName="nav_pnl"
+                                        Storyboard.TargetProperty="Width"
+                                        BeginTime="0:0:0"
+                                        From="230" To="65"
+                                        Duration="0:0:0.2">
 
                                     </DoubleAnimation>
 
@@ -124,12 +89,12 @@
                                 <Storyboard x:Name="ShowStackPanel">
 
                                     <DoubleAnimation
-                                            
-                                            Storyboard.TargetName="nav_pnl"
-                                            Storyboard.TargetProperty="Width"
-                                            BeginTime="0:0:0"
-                                            From="65" To="230"
-                                            Duration="0:0:0.3">
+                                
+                                        Storyboard.TargetName="nav_pnl"
+                                        Storyboard.TargetProperty="Width"
+                                        BeginTime="0:0:0"
+                                        From="65" To="230"
+                                        Duration="0:0:0.3">
 
                                     </DoubleAnimation>
 
@@ -139,25 +104,23 @@
 
                         </EventTrigger>
 
-                    </ToggleButton.Triggers>--><!--
-
+                    </ToggleButton.Triggers>
 
                 </ToggleButton>
 
             </Grid>
 
-            --><!--// ListView with menu list items //--><!--
+            <!--// ListView with menu list items //-->
 
             <ListView  x:Name="LV"
                             Background="Transparent"
                             BorderBrush="Transparent"
                             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
-                --><!--// Home //--><!--
+                <!--// Home //-->
 
                 <ListViewItem HorizontalAlignment="Left"
-                                    Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
-                                    >
+                                    Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter">
 
                     <StackPanel Orientation="Horizontal"
                                     Width="230">
@@ -166,13 +129,13 @@
                                     Stretch="None"
                                     Margin="12,0,0,0"/>
 
-                        <TextBlock Text="Home"
-                                        Margin="25,0,0,0"
+                        <TextBlock Text="Comanda"
+                                        Margin="15,0,0,0"
                                         Style="{StaticResource font_style}"/>
 
                     </StackPanel>
 
-                    --><!--// Tooltip //--><!--
+                    <!--// Tooltip //-->
 
                     <ListViewItem.ToolTip>
 
@@ -184,11 +147,10 @@
 
                 </ListViewItem>
 
-                --><!--// Contacts //--><!--
+                <!--// Contacts //-->
 
                 <ListViewItem HorizontalAlignment="Left"
-                                    Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
-                                    >
+                                    Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter">
 
                     <StackPanel Orientation="Horizontal"
                                     Width="230">
@@ -197,13 +159,13 @@
                                     Stretch="None"
                                     Margin="12,0,0,0"/>
 
-                        <TextBlock Text="Contacts"
-                                        Margin="25,0,0,0"
+                        <TextBlock Text="PDV"
+                                        Margin="15,0,0,0"
                                         Style="{StaticResource font_style}"/>
 
                     </StackPanel>
 
-                    --><!--// Tooltip //--><!--
+                    <!--// Tooltip //-->
 
                     <ListViewItem.ToolTip>
 
@@ -215,11 +177,10 @@
 
                 </ListViewItem>
 
-                --><!--// Messages //--><!--
+                <!--// Messages //-->
 
                 <ListViewItem HorizontalAlignment="Left"
-                                    Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
-                                    >
+                                    Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter">
 
                     <StackPanel Orientation="Horizontal"
                                     Width="230">
@@ -228,13 +189,13 @@
                                     Stretch="None"
                                     Margin="12,0,0,0"/>
 
-                        <TextBlock Text="Messages"
-                                        Margin="25,0,0,0"
+                        <TextBlock Text="Vendas"
+                                        Margin="15,0,0,0"
                                         Style="{StaticResource font_style}"/>
 
                     </StackPanel>
 
-                    --><!--// Tooltip //--><!--
+                    <!--// Tooltip //-->
 
                     <ListViewItem.ToolTip>
 
@@ -246,7 +207,7 @@
 
                 </ListViewItem>
 
-                --><!--// Maps //--><!--
+                <!--// Maps //-->
 
                 <ListViewItem HorizontalAlignment="Left"
                                     Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
@@ -259,13 +220,13 @@
                                     Stretch="None"
                                     Margin="12,0,0,0"/>
 
-                        <TextBlock Text="Maps"
-                                        Margin="25,0,0,0"
+                        <TextBlock Text="Produto"
+                                        Margin="15,0,0,0"
                                         Style="{StaticResource font_style}"/>
 
                     </StackPanel>
 
-                    --><!--// Tooltip //--><!--
+                    <!--// Tooltip //-->
 
                     <ListViewItem.ToolTip>
 
@@ -277,7 +238,7 @@
 
                 </ListViewItem>
 
-                --><!--// Settings //--><!--
+                <!--// Settings //-->
 
                 <ListViewItem HorizontalAlignment="Left"
                                     Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
@@ -290,13 +251,13 @@
                                     Stretch="None"
                                     Margin="12,0,0,0"/>
 
-                        <TextBlock Text="Settings"
-                                        Margin="25,0,0,0"
+                        <TextBlock Text="Estoque"
+                                        Margin="15,0,0,0"
                                         Style="{StaticResource font_style}"/>
 
                     </StackPanel>
 
-                    --><!--// Tooltip //--><!--
+                    <!--// Tooltip //-->
 
                     <ListViewItem.ToolTip>
 
@@ -308,7 +269,7 @@
 
                 </ListViewItem>
 
-                --><!--// Sign Out //--><!--
+                <!--// Sign Out //-->
 
                 <ListViewItem HorizontalAlignment="Left"
                                     Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
@@ -321,13 +282,13 @@
                                     Stretch="None"
                                     Margin="12,0,0,0"/>
 
-                        <TextBlock Text="Sign Out"
-                                        Margin="25,0,0,0"
+                        <TextBlock Text="Configuração"
+                                        Margin="15,0,0,0"
                                         Style="{StaticResource font_style}"/>
 
                     </StackPanel>
 
-                    --><!--// Tooltip //--><!--
+                    <!--// Tooltip //-->
 
                     <ListViewItem.ToolTip>
 
@@ -339,7 +300,7 @@
 
                 </ListViewItem>
 
-                --><!--// Listview items style template //--><!--
+                <!--// Listview items style template //-->
 
                 <ListView.ItemContainerStyle>
 
@@ -400,8 +361,6 @@
             </ListView>
 
         </StackPanel>
+    </Grid>
 
-    </Grid>-->
-    
-    
 </UserControl>
