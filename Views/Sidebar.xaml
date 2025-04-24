@@ -7,28 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="720" d:DesignWidth="150"
              MinWidth="50" MaxWidth="150">
-    
-    <StackPanel Background="{StaticResource CorPrimaria}">
-        <TextBlock Text="Comanda" Foreground="White" TextAlignment="Center" VerticalAlignment="Center" Height="50"/>
-        <TextBlock Text="PDV" Foreground="White" Height="50" TextAlignment="Center"/>
-        <TextBlock Text="Vendas" Foreground="White" Height="50" TextAlignment="Center"/>
-        <TextBlock Text="Produto" Foreground="White" Height="50" TextAlignment="Center"/>
-        <TextBlock Text="Estoque" Foreground="White" Height="50" TextAlignment="Center"/>
-        <TextBlock Text="Configuração" Foreground="White" Height="50" TextAlignment="Center"/>
-        <Border BorderBrush="{x:Null}" Height="50">
-            <TextBlock TextWrapping="Wrap" Foreground="White" Text="Some Text" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        </Border>
-    </StackPanel>
-    
 
-  
-
-    <!--<Grid   x:Name="nav_pnl"
+    <Grid   x:Name="nav_pnl"
                 HorizontalAlignment="Left"
                 Width="65"
                 Background="#2E333A">
 
-        --><!--<Grid x:Name="BG" PreviewMouseLeftButtonDown="BG_PreviewMouseLeftButtonDown">
+        <Grid x:Name="BG" PreviewMouseLeftButtonDown="BG_PreviewMouseLeftButtonDown">
 
             <Grid.Background>
 
@@ -37,15 +22,15 @@
 
             </Grid.Background>
 
-        </Grid>--><!--
+        </Grid>
         
         <StackPanel x:Name="st_pnl">
 
-            --><!--// Grid for the Menu Toggle Button //--><!--
+            <!--// Grid for the Menu Toggle Button //-->
 
             <Grid Height="90">
 
-                --><!--// Menu title text //--><!--
+                <!--// Menu title text //-->
 
                 <TextBlock  Grid.Row="1"
                                 Grid.Column="0"
@@ -58,7 +43,7 @@
                                 VerticalAlignment="Center"
                                 Style="{StaticResource font_style}">
                         
-                        --><!--// Shadow Effect //--><!--
+                    <!--// Shadow Effect //-->
 
                     <TextBlock.Effect>
 
@@ -71,7 +56,7 @@
 
                 </TextBlock>
 
-                --><!--// Toggle Button //--><!--
+                <!--// Toggle Button //-->
 
                 <ToggleButton x:Name="Tg_Btn"
                                     Grid.Column="0"
@@ -80,20 +65,20 @@
                                     Margin="18,-20,0,0"
                                     Height="30"
                                     Width="30"
-                                    BorderThickness="0">
-                    --><!--Unchecked="Tg_Btn_Unchecked" Checked="Tg_Btn_Checked">-->
+                                    BorderThickness="0"
+                                    Unchecked="Tg_Btn_Unchecked" Checked="Tg_Btn_Checked">
 
-                    <!--// Toggle button default background image //--><!--
+                    <!--// Toggle button default background image //-->
 
                     <ToggleButton.Background>
 
-                        <ImageBrush ImageSource="/Resources/Assets/img_menu.png" Stretch="Fill"/>
+                        <ImageBrush ImageSource="pack://application:,,,/Resources/Assets/img_menu.png" Stretch="Fill"/>
 
                     </ToggleButton.Background>
 
-                    --><!--// Toggle Button - Checked, Unchecked events //-->
+                    <!--// Toggle Button - Checked, Unchecked events //-->
 
-                    <!--<ToggleButton.Triggers>
+                    <ToggleButton.Triggers>
 
                         <EventTrigger RoutedEvent="ToggleButton.Unchecked">
 
@@ -139,21 +124,21 @@
 
                         </EventTrigger>
 
-                    </ToggleButton.Triggers>--><!--
+                    </ToggleButton.Triggers>
 
 
                 </ToggleButton>
 
             </Grid>
 
-            --><!--// ListView with menu list items //--><!--
+            <!--// ListView with menu list items //-->
 
             <ListView  x:Name="LV"
                             Background="Transparent"
                             BorderBrush="Transparent"
                             ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
-                --><!--// Home //--><!--
+                <!--// Home //-->
 
                 <ListViewItem HorizontalAlignment="Left"
                                     Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
@@ -172,7 +157,7 @@
 
                     </StackPanel>
 
-                    --><!--// Tooltip //--><!--
+                    <!--// Tooltip //-->
 
                     <ListViewItem.ToolTip>
 
@@ -184,7 +169,7 @@
 
                 </ListViewItem>
 
-                --><!--// Contacts //--><!--
+                <!--// Contacts //-->
 
                 <ListViewItem HorizontalAlignment="Left"
                                     Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
@@ -203,7 +188,7 @@
 
                     </StackPanel>
 
-                    --><!--// Tooltip //--><!--
+                    <!--// Tooltip //-->
 
                     <ListViewItem.ToolTip>
 
@@ -215,7 +200,7 @@
 
                 </ListViewItem>
 
-                --><!--// Messages //--><!--
+                <!--// Messages //-->
 
                 <ListViewItem HorizontalAlignment="Left"
                                     Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
@@ -234,7 +219,7 @@
 
                     </StackPanel>
 
-                    --><!--// Tooltip //--><!--
+                    <!--// Tooltip //-->
 
                     <ListViewItem.ToolTip>
 
@@ -246,7 +231,7 @@
 
                 </ListViewItem>
 
-                --><!--// Maps //--><!--
+                <!--// Maps //-->
 
                 <ListViewItem HorizontalAlignment="Left"
                                     Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
@@ -265,7 +250,7 @@
 
                     </StackPanel>
 
-                    --><!--// Tooltip //--><!--
+                    <!--// Tooltip //-->
 
                     <ListViewItem.ToolTip>
 
@@ -277,7 +262,7 @@
 
                 </ListViewItem>
 
-                --><!--// Settings //--><!--
+                <!--// Settings //-->
 
                 <ListViewItem HorizontalAlignment="Left"
                                     Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
@@ -296,7 +281,7 @@
 
                     </StackPanel>
 
-                    --><!--// Tooltip //--><!--
+                    <!--// Tooltip //-->
 
                     <ListViewItem.ToolTip>
 
@@ -308,7 +293,7 @@
 
                 </ListViewItem>
 
-                --><!--// Sign Out //--><!--
+                <!--// Sign Out //-->
 
                 <ListViewItem HorizontalAlignment="Left"
                                     Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
@@ -327,7 +312,7 @@
 
                     </StackPanel>
 
-                    --><!--// Tooltip //--><!--
+                    <!--// Tooltip //-->
 
                     <ListViewItem.ToolTip>
 
@@ -339,7 +324,7 @@
 
                 </ListViewItem>
 
-                --><!--// Listview items style template //--><!--
+                <!--// Listview items style template //-->
 
                 <ListView.ItemContainerStyle>
 
@@ -401,7 +386,7 @@
 
         </StackPanel>
 
-    </Grid>-->
+    </Grid>
     
     
 </UserControl>
