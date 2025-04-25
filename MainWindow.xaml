@@ -14,16 +14,10 @@
 
         <TextBox Text="Menu" Foreground="White" Width="0"/>
 
-        <!-- Área Central --><!--
+         <!--Área Central-->
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            --><!--<UniformGrid x:Name="PainelCentral"
-                         Rows="0"
-                         Columns="3"
-                         Margin="10"
-                         Background="{StaticResource CorBackground}"
-                         HorizontalAlignment="Stretch"
-                         VerticalAlignment="Top"/>--><!--
-        </ScrollViewer>-->
+            <ContentControl Content="{Binding CurrentView}" />
+        </ScrollViewer>
 
     </DockPanel>
 </Window>

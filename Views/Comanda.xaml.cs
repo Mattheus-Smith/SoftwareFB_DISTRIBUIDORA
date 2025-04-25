@@ -1,5 +1,4 @@
-﻿using SoftwareFB_DISTRIBUIDORA.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,18 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SoftwareFB_DISTRIBUIDORA
+namespace SoftwareFB_DISTRIBUIDORA.Views
 {
     /// <summary>
-    /// Interação lógica para MainWindow.xam
+    /// Interação lógica para Comanda.xam
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Comanda : Page
     {
-        public MainWindow()
+        public Comanda()
         {
             InitializeComponent();
-
-            DataContext = new MainWindowViewModel();
         }
     }
 }

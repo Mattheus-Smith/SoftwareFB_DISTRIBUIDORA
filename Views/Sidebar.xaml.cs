@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SoftwareFB_DISTRIBUIDORA.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,20 @@ namespace SoftwareFB_DISTRIBUIDORA.Views
         public Sidebar()
         {
             InitializeComponent();
+
+            //// Pega o MainWindowViewModel e passa o método de navegação
+            //var mainVM = (MainWindowViewModel)Application.Current.MainWindow.DataContext;
+            //DataContext = new SidebarViewModel(mainVM.NavigateTo);
+
+            this.Loaded += Sidebar_Loaded;
+        }
+
+        private void Sidebar_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (Application.Current.MainWindow?.DataContext is MainWindowViewModel mainVM)
+            {
+                DataContext = new SidebarViewModel(mainVM.NavigateTo);
+            }
         }
 
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
