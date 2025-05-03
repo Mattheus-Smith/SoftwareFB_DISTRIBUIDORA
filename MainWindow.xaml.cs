@@ -1,4 +1,5 @@
 ﻿using SoftwareFB_DISTRIBUIDORA.ViewModels;
+using SoftwareFB_DISTRIBUIDORA.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,8 +25,33 @@ namespace SoftwareFB_DISTRIBUIDORA
         public MainWindow()
         {
             InitializeComponent();
+            Sidebar.ItemSelecionado += Sidebar_ItemSelecionado;
+            ConteudoArea.Content = new ComandaView();
+        }
 
-            DataContext = new MainWindowViewModel();
+        private void Sidebar_ItemSelecionado(string item)
+        {
+            switch (item)
+            {
+                case "Comanda":
+                    ConteudoArea.Content = new ComandaView();
+                    break;
+                case "PDV":
+                    ConteudoArea.Content = new PdvView();
+                    break;
+                case "Vendas":
+                    ConteudoArea.Content = new VendasView();
+                    break;
+                case "Produto":
+                    ConteudoArea.Content = new ProdutoView();
+                    break;
+                case "Estoque":
+                    ConteudoArea.Content = new EstoqueView();
+                    break;
+                case "Configurações":
+                    ConteudoArea.Content = new ConfiguracaoView();
+                    break;
+            }
         }
     }
 }

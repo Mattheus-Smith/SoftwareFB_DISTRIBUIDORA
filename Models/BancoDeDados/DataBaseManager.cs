@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI.Common;
 using SoftwareFB_DISTRIBUIDORA.BancoDeDados.Models;
 using System;
 using System.Collections.Generic;
@@ -11,13 +12,24 @@ namespace SoftwareFB_DISTRIBUIDORA.BancoDeDados
 {
     class DataBaseManager
     {
-        string connectionString = "server=localhost;user=root;database=db_fb_distribuidora;port=3306;password=1234";
+        private static DataBaseManager _instance;
         MySqlConnection conn;
         private static object lockBancoDados = new object();
-        
-        public DataBaseManager()
+        string connectionString = "server=localhost;user=root;database=db_fb_distribuidora;port=3306;password=1234";
+
+        public static DataBaseManager Instance
         {
-            //conn = new MySqlConnection(connectionString);
+            get
+            {
+                if (_instance == null)
+                    _instance = new DataBaseManager();
+                return _instance;
+            }
+        }
+
+        private DataBaseManager()
+        {
+            // Construtor privado
         }
 
         #region TbProduto
@@ -28,14 +40,20 @@ namespace SoftwareFB_DISTRIBUIDORA.BancoDeDados
             {
                 using (var connection = new MySqlConnection(connectionString))
                 {
-                    string query = "INSERT INTO TbProdutos (nomeProduto, idCategoria, precoUnitario, precoVenda, porcetagemDeLucro, codigoBarra, ativo) VALUES (@nomeProduto, @idCategoria, @precoUnitario, @precoVenda, @porcetagemDeLucro, @codigoBarra ,@ativo)";
+                    // Buscar o Id da categoria pelo nome
+                    int IdCategoria = ObterIdCategoriaPorNome(produto.Categoria);
+
+                    string query = @"INSERT INTO TbProdutos 
+                                    (nomeProduto, idCategoria, precoUnitario, precoVenda, PorcentagemDeLucro, codigoBarra, ativo) 
+                                    VALUES 
+                                    (@nomeProduto, @idCategoria, @precoUnitario, @precoVenda, @PorcentagemDeLucro, @codigoBarra, @ativo)";
 
                     var command = new MySqlCommand(query, connection);
                     command.Parameters.AddWithValue("@nomeProduto", produto.NomeProduto);
-                    command.Parameters.AddWithValue("@idCategoria", produto.IdCategoria);
+                    command.Parameters.AddWithValue("@idCategoria", IdCategoria);
                     command.Parameters.AddWithValue("@precoUnitario", produto.PrecoUnitario);
                     command.Parameters.AddWithValue("@precoVenda", produto.PrecoVenda);
-                    command.Parameters.AddWithValue("@porcetagemDeLucro", produto.PorcetagemDeLucro);
+                    command.Parameters.AddWithValue("@PorcentagemDeLucro", produto.PorcentagemDeLucro);
                     command.Parameters.AddWithValue("@codigoBarra", produto.CodigoBarra);
                     command.Parameters.AddWithValue("@ativo", produto.Ativo);
 
@@ -70,21 +88,26 @@ namespace SoftwareFB_DISTRIBUIDORA.BancoDeDados
             {
                 using (var connection = new MySqlConnection(connectionString))
                 {
-                    string query = "UPDATE TbProdutos SET nomeProduto = @nomeProduto, " +
-                        "idCategoria = @idCategoria, " +
-                        "precoUnitario = @precoUnitario, " +
-                        "precoVenda = @precoVenda, " +
-                        "porcetagemDeLucro = @porcetagemDeLucro, " +
-                        "codigoBarra = @codigoBarra, " +
-                        "ativo = @ativo WHERE id = @id";
+                    // Buscar o Id da categoria pelo nome
+                    int IdCategoria = ObterIdCategoriaPorNome(produto.Categoria);
+
+                    string query = @"UPDATE TbProdutos SET 
+                                    nomeProduto = @nomeProduto, 
+                                    idCategoria = @idCategoria, 
+                                    precoUnitario = @precoUnitario, 
+                                    precoVenda = @precoVenda, 
+                                    PorcentagemDeLucro = @PorcentagemDeLucro, 
+                                    codigoBarra = @codigoBarra, 
+                                    ativo = @ativo 
+                                    WHERE id = @id";
 
                     var command = new MySqlCommand(query, connection);
                     command.Parameters.AddWithValue("@id", produto.Id);
                     command.Parameters.AddWithValue("@nomeProduto", produto.NomeProduto);
-                    command.Parameters.AddWithValue("@idCategoria", produto.IdCategoria);
+                    command.Parameters.AddWithValue("@idCategoria", IdCategoria);
                     command.Parameters.AddWithValue("@precoUnitario", produto.PrecoUnitario);
                     command.Parameters.AddWithValue("@precoVenda", produto.PrecoVenda);
-                    command.Parameters.AddWithValue("@porcetagemDeLucro", produto.PorcetagemDeLucro);
+                    command.Parameters.AddWithValue("@PorcentagemDeLucro", produto.PorcentagemDeLucro);
                     command.Parameters.AddWithValue("@codigoBarra", produto.CodigoBarra);
                     command.Parameters.AddWithValue("@ativo", produto.Ativo);
 
@@ -94,14 +117,20 @@ namespace SoftwareFB_DISTRIBUIDORA.BancoDeDados
             }
         }
 
-        public List<Produto> ConsultarProdutos()
+        public List<Produto> ObterTodosProdutos()
         {
             List<Produto> produtos = new List<Produto>();
             lock (lockBancoDados)
             {
                 using (var connection = new MySqlConnection(connectionString))
                 {
-                    string query = "SELECT * FROM TbProdutos";
+                    string query = @"
+                                SELECT 
+                                    p.Id, p.NomeProduto, c.Descricao AS Categoria,
+                                    p.PrecoUnitario, p.PrecoVenda, 
+                                    p.PorcentagemDeLucro, p.CodigoBarra, p.Ativo
+                                FROM TbProdutos p
+                                INNER JOIN TbCategoria c ON p.IdCategoria = c.Id";
                     var command = new MySqlCommand(query, connection);
 
                     connection.Open();
@@ -113,10 +142,10 @@ namespace SoftwareFB_DISTRIBUIDORA.BancoDeDados
                             {
                                 Id = reader.GetInt32("id"),
                                 NomeProduto = reader.GetString("nomeProduto"),
-                                IdCategoria = reader.GetInt32("idCategoria"),
+                                Categoria = reader.IsDBNull(reader.GetOrdinal("Categoria")) ? "Desconhecida" : reader.GetString(reader.GetOrdinal("Categoria")),
                                 PrecoUnitario = reader.GetFloat("precoUnitario"),
                                 PrecoVenda = reader.GetFloat("precoVenda"),
-                                PorcetagemDeLucro = reader.IsDBNull(reader.GetOrdinal("porcetagemDeLucro")) ? 0 : reader.GetFloat("porcetagemDeLucro"),
+                                PorcentagemDeLucro = reader.IsDBNull(reader.GetOrdinal("porcentagemDeLucro")) ? 0 : reader.GetFloat("PorcentagemDeLucro"),
                                 CodigoBarra = reader.IsDBNull(reader.GetOrdinal("codigoBarra")) ? 0 : reader.GetInt64("codigoBarra"),
 
                                 Ativo = reader.GetBoolean("ativo")
@@ -424,6 +453,32 @@ namespace SoftwareFB_DISTRIBUIDORA.BancoDeDados
                 }
             }
         }
+
+        private int ObterIdCategoriaPorNome(string nomeCategoria)
+        {
+            lock (lockBancoDados) 
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    string query = "SELECT Id FROM TbCategoria WHERE descricao = @descricao";
+                    var command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@descricao", nomeCategoria);
+
+                    connection.Open();
+                    var result = command.ExecuteScalar();
+
+                    if (result != null && int.TryParse(result.ToString(), out int idCategoria))
+                    {
+                        return idCategoria;
+                    }
+                    else
+                    {
+                        throw new Exception($"Categoria '{nomeCategoria}' não encontrada.");
+                    }
+                }
+            }
+        }
+
 
         #endregion
 

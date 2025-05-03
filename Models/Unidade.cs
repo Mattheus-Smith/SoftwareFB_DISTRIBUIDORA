@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SoftwareFB_DISTRIBUIDORA.BancoDeDados.Models
 {
-    internal class Unidade
+    public class Unidade
     {
         public int Id { get; set; }
         public string Descricao { get; set; }

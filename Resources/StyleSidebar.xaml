@@ -61,9 +61,9 @@
     <DataTemplate DataType="{x:Type vm:ComandaViewModel}">
         <views:ComandaView />
     </DataTemplate>-->
-    
+
     <DataTemplate DataType="{x:Type viewModels:ComandaViewModel}">
-        <views:Comanda />
+        <views:ComandaView />
     </DataTemplate>
-    
+
 </ResourceDictionary>

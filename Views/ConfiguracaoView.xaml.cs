@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace SoftwareFB_DISTRIBUIDORA.Views
 {
     /// <summary>
-    /// Interação lógica para Comanda.xam
+    /// Interação lógica para ConfiguracaoView.xam
     /// </summary>
-    public partial class Comanda : Page
+    public partial class ConfiguracaoView : UserControl
     {
-        public Comanda()
+        public ConfiguracaoView()
         {
             InitializeComponent();
         }

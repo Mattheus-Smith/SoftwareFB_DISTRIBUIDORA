@@ -10,13 +10,11 @@
     <DockPanel>
 
         <!-- Sidebar como UserControl -->
-        <views:Sidebar DockPanel.Dock="Left"/>
+        <views:Sidebar x:Name="Sidebar" DockPanel.Dock="Left"/>
 
-        <TextBox Text="Menu" Foreground="White" Width="0"/>
-
-         <!--Área Central-->
+        <!--Área Central-->
         <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <ContentControl Content="{Binding CurrentView}" />
+            <ContentControl x:Name="ConteudoArea"/>
         </ScrollViewer>
 
     </DockPanel>

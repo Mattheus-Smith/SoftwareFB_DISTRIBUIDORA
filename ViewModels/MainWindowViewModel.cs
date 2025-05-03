@@ -23,7 +23,7 @@ namespace SoftwareFB_DISTRIBUIDORA.ViewModels
         public MainWindowViewModel()
         {
             // Exibe uma view inicial, se quiser
-            CurrentView = new Comanda();
+            CurrentView = new ComandaViewModel();
         }
 
         // Método público para ser acessado pelo SidebarViewModel

@@ -21,46 +21,46 @@ namespace SoftwareFB_DISTRIBUIDORA.Views
     /// </summary>
     public partial class Sidebar : UserControl
     {
+        public event Action<string> ItemSelecionado;
+
         public Sidebar()
         {
             InitializeComponent();
 
-            //// Pega o MainWindowViewModel e passa o método de navegação
-            //var mainVM = (MainWindowViewModel)Application.Current.MainWindow.DataContext;
-            //DataContext = new SidebarViewModel(mainVM.NavigateTo);
-
-            this.Loaded += Sidebar_Loaded;
         }
 
-        private void Sidebar_Loaded(object sender, RoutedEventArgs e)
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (Application.Current.MainWindow?.DataContext is MainWindowViewModel mainVM)
+            if (sender is ListView list && list.SelectedItem is ListViewItem item)
             {
-                DataContext = new SidebarViewModel(mainVM.NavigateTo);
+                var tag = item.Tag?.ToString();
+                if (!string.IsNullOrEmpty(tag))
+                {
+                    ItemSelecionado?.Invoke(tag);
+                }
             }
         }
-
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
             // Set tooltip visibility
 
             if (Tg_Btn.IsChecked == true)
             {
-                tt_home.Visibility = Visibility.Collapsed;
-                tt_contacts.Visibility = Visibility.Collapsed;
-                tt_messages.Visibility = Visibility.Collapsed;
-                tt_maps.Visibility = Visibility.Collapsed;
-                tt_settings.Visibility = Visibility.Collapsed;
-                tt_signout.Visibility = Visibility.Collapsed;
+                tt_comanda.Visibility = Visibility.Collapsed;
+                tt_pdv.Visibility = Visibility.Collapsed;
+                tt_vendas.Visibility = Visibility.Collapsed;
+                tt_produto.Visibility = Visibility.Collapsed;
+                tt_estoque.Visibility = Visibility.Collapsed;
+                tt_configuracoes.Visibility = Visibility.Collapsed;
             }
             else
             {
-                tt_home.Visibility = Visibility.Visible;
-                tt_contacts.Visibility = Visibility.Visible;
-                tt_messages.Visibility = Visibility.Visible;
-                tt_maps.Visibility = Visibility.Visible;
-                tt_settings.Visibility = Visibility.Visible;
-                tt_signout.Visibility = Visibility.Visible;
+                tt_comanda.Visibility = Visibility.Visible;
+                tt_pdv.Visibility = Visibility.Visible;
+                tt_vendas.Visibility = Visibility.Visible;
+                tt_produto.Visibility = Visibility.Visible;
+                tt_estoque.Visibility = Visibility.Visible;
+                tt_configuracoes.Visibility = Visibility.Visible;
             }
         }
 

@@ -112,15 +112,16 @@
 
             <!--// ListView with menu list items //-->
 
-            <ListView  x:Name="LV"
-                            Background="Transparent"
-                            BorderBrush="Transparent"
-                            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView  x:Name="ListMenu"
+                        SelectionChanged="ListView_SelectionChanged"
+                        Background="Transparent"
+                        BorderBrush="Transparent"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
-                <!--// Home //-->
+                <!--// Comanda //-->
 
                 <ListViewItem HorizontalAlignment="Left" Margin="0,0,0,15"
-                              MouseEnter="ListViewItem_MouseEnter" >
+                              MouseEnter="ListViewItem_MouseEnter" Tag="Comanda">
 
                     <StackPanel Orientation="Horizontal"
                                     Width="230">
@@ -139,17 +140,17 @@
 
                     <ListViewItem.ToolTip>
 
-                        <ToolTip x:Name="tt_home"
-                                        Content="Home"
+                        <ToolTip x:Name="tt_comanda"
+                                        Content="Comanda"
                                         Style="{StaticResource tt_style}"/>
 
                     </ListViewItem.ToolTip>
 
                 </ListViewItem>
 
-                <!--// Contacts //-->
+                <!--// PDV //-->
 
-                <ListViewItem HorizontalAlignment="Left"
+                <ListViewItem HorizontalAlignment="Left" Tag="PDV"
                                     Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter">
 
                     <StackPanel Orientation="Horizontal"
@@ -169,17 +170,17 @@
 
                     <ListViewItem.ToolTip>
 
-                        <ToolTip x:Name="tt_contacts"
-                                        Content="Contacts"
+                        <ToolTip x:Name="tt_pdv"
+                                        Content="PDV"
                                         Style="{StaticResource tt_style}"/>
 
                     </ListViewItem.ToolTip>
 
                 </ListViewItem>
 
-                <!--// Messages //-->
+                <!--// Vendas //-->
 
-                <ListViewItem HorizontalAlignment="Left"
+                <ListViewItem HorizontalAlignment="Left" Tag="Vendas"
                                     Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter">
 
                     <StackPanel Orientation="Horizontal"
@@ -199,17 +200,17 @@
 
                     <ListViewItem.ToolTip>
 
-                        <ToolTip x:Name="tt_messages"
-                                        Content="Messages"
+                        <ToolTip x:Name="tt_vendas"
+                                        Content="Vendas"
                                         Style="{StaticResource tt_style}"/>
 
                     </ListViewItem.ToolTip>
 
                 </ListViewItem>
 
-                <!--// Maps //-->
+                <!--// Produto //-->
 
-                <ListViewItem HorizontalAlignment="Left"
+                <ListViewItem HorizontalAlignment="Left" Tag="Produto"
                                     Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
                                     >
 
@@ -230,17 +231,17 @@
 
                     <ListViewItem.ToolTip>
 
-                        <ToolTip x:Name="tt_maps"
-                                        Content="Maps"
+                        <ToolTip x:Name="tt_produto"
+                                        Content="Produto"
                                         Style="{StaticResource tt_style}"/>
 
                     </ListViewItem.ToolTip>
 
                 </ListViewItem>
 
-                <!--// Settings //-->
+                <!--// Estoque //-->
 
-                <ListViewItem HorizontalAlignment="Left"
+                <ListViewItem HorizontalAlignment="Left" Tag="Estoque"
                                     Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
                                     >
 
@@ -261,17 +262,17 @@
 
                     <ListViewItem.ToolTip>
 
-                        <ToolTip x:Name="tt_settings"
-                                        Content="Settings"
+                        <ToolTip x:Name="tt_estoque"
+                                        Content="Estoque"
                                         Style="{StaticResource tt_style}"/>
 
                     </ListViewItem.ToolTip>
 
                 </ListViewItem>
 
-                <!--// Sign Out //-->
+                <!--// Configurações //-->
 
-                <ListViewItem HorizontalAlignment="Left"
+                <ListViewItem HorizontalAlignment="Left" Tag="Configurações"
                                     Margin="0,0,0,15" MouseEnter="ListViewItem_MouseEnter"
                                     >
 
@@ -292,8 +293,8 @@
 
                     <ListViewItem.ToolTip>
 
-                        <ToolTip x:Name="tt_signout"
-                                        Content="Sign Out"
+                        <ToolTip x:Name="tt_configuracoes"
+                                        Content="Configurações"
                                         Style="{StaticResource tt_style}"/>
 
                     </ListViewItem.ToolTip>

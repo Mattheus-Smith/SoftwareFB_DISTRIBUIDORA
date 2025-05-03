@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SoftwareFB_DISTRIBUIDORA.BancoDeDados.Models
 {
-    internal class Estoque
+    public class Estoque
     {
         public int Id { get; set; }
         public int IdProduto { get; set; }

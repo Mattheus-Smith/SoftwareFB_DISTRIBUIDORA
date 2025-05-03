@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SoftwareFB_DISTRIBUIDORA.BancoDeDados.Models
 {
-    internal class ComandaItem
+    public class ComandaItem
     {
         public int Id { get; set; }
         public int IdComanda { get; set; }
