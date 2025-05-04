@@ -1,4 +1,5 @@
-﻿using SoftwareFB_DISTRIBUIDORA.ViewModels;
+﻿using SoftwareFB_DISTRIBUIDORA.BancoDeDados;
+using SoftwareFB_DISTRIBUIDORA.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,23 @@ namespace SoftwareFB_DISTRIBUIDORA.Views
             }
         }
 
+        private void BtnEditar_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender is Button btn && btn.DataContext is Produto produtoSelecionado)
+            {
+                var novaJanela = new EditProdutoView(produtoSelecionado);
+
+                bool? resultado = novaJanela.ShowDialog();
+
+                if (resultado == true)
+                {
+                    // Produto foi editado, atualiza a lista
+                    var viewModel = DataContext as ProdutoViewModel;
+                    viewModel?.AtualizarListaProdutos();
+                }
+            }
+            
+        }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {

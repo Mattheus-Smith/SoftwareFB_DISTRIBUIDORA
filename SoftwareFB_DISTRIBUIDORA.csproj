@@ -263,6 +263,9 @@
     <Compile Include="Views\ConfiguracaoView.xaml.cs">
       <DependentUpon>ConfiguracaoView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditProdutoView.xaml.cs">
+      <DependentUpon>EditProdutoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EstoqueView.xaml.cs">
       <DependentUpon>EstoqueView.xaml</DependentUpon>
     </Compile>
@@ -311,6 +314,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ConfiguracaoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditProdutoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

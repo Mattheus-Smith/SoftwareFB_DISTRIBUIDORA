@@ -85,8 +85,6 @@ namespace SoftwareFB_DISTRIBUIDORA.BancoDeDados
             {
                 using (var connection = new MySqlConnection(connectionString))
                 {
-                    // Buscar o Id da categoria pelo nome
-                    int IdCategoria = ObterIdCategoriaPorNome(produto.Categoria);
 
                     string query = @"UPDATE TbProdutos SET 
                                     nomeProduto = @nomeProduto, 
@@ -101,7 +99,7 @@ namespace SoftwareFB_DISTRIBUIDORA.BancoDeDados
                     var command = new MySqlCommand(query, connection);
                     command.Parameters.AddWithValue("@id", produto.Id);
                     command.Parameters.AddWithValue("@nomeProduto", produto.NomeProduto);
-                    command.Parameters.AddWithValue("@idCategoria", IdCategoria);
+                    command.Parameters.AddWithValue("@idCategoria", Convert.ToInt32(produto.Categoria));
                     command.Parameters.AddWithValue("@precoUnitario", produto.PrecoUnitario);
                     command.Parameters.AddWithValue("@precoVenda", produto.PrecoVenda);
                     command.Parameters.AddWithValue("@PorcentagemDeLucro", produto.PorcentagemDeLucro);

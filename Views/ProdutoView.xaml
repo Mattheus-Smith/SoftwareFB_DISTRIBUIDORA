@@ -85,14 +85,13 @@
                 <DataGridTemplateColumn Header="EDITAR" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Background="Transparent" BorderThickness="0" ToolTip="Editar">
-                                <!--<Image Source="/Imagens/icone-editar.png" Width="16" Height="16"/>-->
+                            <Button Background="Transparent" BorderThickness="0" ToolTip="Editar" Click="BtnEditar_Click">
                                 <iconPacks:PackIconModern Kind="Edit" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
-                                <!--Foreground="White"-->
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+
             </DataGrid.Columns>
 
         </DataGrid>
