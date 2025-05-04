@@ -25,6 +25,14 @@ namespace SoftwareFB_DISTRIBUIDORA.ViewModels
             OnPropertyChanged(nameof(Produtos)); //Avise a interface (UI) que a propriedade mudou.
         }
 
+        public void AtualizarListaProdutos()
+        {
+            var produtos = DataBaseManager.Instance.ObterTodosProdutos();
+            Produtos = new ObservableCollection<Produto>(produtos);
+            OnPropertyChanged(nameof(Produtos));
+        }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string nome) //Esse método avisa a UI: "Ei, a propriedade Produtos mudou!".
         {

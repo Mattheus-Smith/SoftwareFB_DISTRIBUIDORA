@@ -40,9 +40,6 @@ namespace SoftwareFB_DISTRIBUIDORA.BancoDeDados
             {
                 using (var connection = new MySqlConnection(connectionString))
                 {
-                    // Buscar o Id da categoria pelo nome
-                    int IdCategoria = ObterIdCategoriaPorNome(produto.Categoria);
-
                     string query = @"INSERT INTO TbProdutos 
                                     (nomeProduto, idCategoria, precoUnitario, precoVenda, PorcentagemDeLucro, codigoBarra, ativo) 
                                     VALUES 
@@ -50,7 +47,7 @@ namespace SoftwareFB_DISTRIBUIDORA.BancoDeDados
 
                     var command = new MySqlCommand(query, connection);
                     command.Parameters.AddWithValue("@nomeProduto", produto.NomeProduto);
-                    command.Parameters.AddWithValue("@idCategoria", IdCategoria);
+                    command.Parameters.AddWithValue("@idCategoria", Convert.ToInt32(produto.Categoria));
                     command.Parameters.AddWithValue("@precoUnitario", produto.PrecoUnitario);
                     command.Parameters.AddWithValue("@precoVenda", produto.PrecoVenda);
                     command.Parameters.AddWithValue("@PorcentagemDeLucro", produto.PorcentagemDeLucro);
@@ -479,6 +476,33 @@ namespace SoftwareFB_DISTRIBUIDORA.BancoDeDados
             }
         }
 
+        public List<Categoria> ObterTodasCategorias()
+        {
+            List<Categoria> categorias = new List<Categoria>();
+            lock (lockBancoDados)
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    string query = @"SELECT * FROM TbCategoria";
+                    var command = new MySqlCommand(query, connection);
+
+                    connection.Open();
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var categoria = new Categoria()
+                            {
+                                Id = reader.GetInt32("id"),
+                                Descricao = reader.GetString("Descricao"),
+                            };
+                            categorias.Add(categoria);
+                        }
+                    }
+                }
+            }
+            return categorias;
+        }
 
         #endregion
 
