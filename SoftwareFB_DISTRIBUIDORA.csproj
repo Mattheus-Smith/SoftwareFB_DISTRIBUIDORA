@@ -250,6 +250,7 @@
     </ApplicationDefinition>
     <Compile Include="Services\RelayCommand.cs" />
     <Compile Include="ViewModels\ComandaViewModel.cs" />
+    <Compile Include="ViewModels\EstoqueViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ProdutoViewModel.cs" />
     <Compile Include="ViewModels\SidebarViewModel.cs" />
@@ -262,6 +263,9 @@
     </Compile>
     <Compile Include="Views\ConfiguracaoView.xaml.cs">
       <DependentUpon>ConfiguracaoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditEstoqueView.xaml.cs">
+      <DependentUpon>EditEstoqueView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditProdutoView.xaml.cs">
       <DependentUpon>EditProdutoView.xaml</DependentUpon>
@@ -314,6 +318,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ConfiguracaoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditEstoqueView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

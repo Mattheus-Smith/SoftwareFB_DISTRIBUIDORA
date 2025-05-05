@@ -5,11 +5,88 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SoftwareFB_DISTRIBUIDORA.Views"
              mc:Ignorable="d" 
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              d:DesignHeight="720" d:DesignWidth="1215">
 
     <Grid Background="{StaticResource CorBackground}">
 
-        <TextBlock Text="Tela Estoque" Foreground="White" TextAlignment="Center" VerticalAlignment="Center"></TextBlock>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Campo de pesquisa com botão -->
+        <Grid Grid.Row="0" Margin="50,50,50,20" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <!-- TextBox ocupa o máximo disponível -->
+                <ColumnDefinition Width="200"/>
+                <!-- Botão com largura fixa -->
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="txtPesquisa"
+         Style="{DynamicResource SeachTextBox}"
+         Grid.Column="0"
+         GotFocus="TextBox_GotFocus"
+         LostFocus="TextBox_LostFocus"
+         Height="40" Margin="20,0,20,0"/>
+
+            <!--<Button Grid.Row="1" Grid.Column="1" Style="{DynamicResource addButton}" FontSize="13"
+                     Width="150" Height="40" HorizontalAlignment="Right" Click="AbrirAddProduto_Click"
+                    Margin="0 0 20 0">
+                <StackPanel Orientation="Horizontal">
+                    <iconPacks:PackIconModern Kind="Add" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
+                    <TextBlock Text="Add Novo Produto" />
+                </StackPanel>
+            </Button>-->
+        </Grid>
+
+        <!-- Tabela de produtos -->
+        <DataGrid Grid.Row="1" x:Name="dataGrid1"
+                      Margin="50,0,50,50"
+                      Style="{StaticResource TabelaProdutosEstilo}"
+                      ItemsSource="{Binding Estoques}"
+                      IsReadOnly="True"
+                      RowStyle="{StaticResource LinhaDataGridEstilo}"
+                      AlternationCount="2"
+                      SelectionUnit="FullRow"
+                      SelectionMode="Single">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="PRODUTO" Binding="{Binding Produto}" Width="*"/>
+                <DataGridTextColumn Header="QUANTIDADE" 
+                    Binding="{Binding QuantidadeDisponivel}" Width="*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="UNIDADE" 
+                    Binding="{Binding Unidade}" Width="*">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
+                <!-- Ícone de edição -->
+                <DataGridTemplateColumn Header="EDITAR" Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Background="Transparent" BorderThickness="0" ToolTip="Editar" Click="BtnEditar_Click">
+                                <iconPacks:PackIconModern Kind="Edit" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+
     </Grid>
 
 </UserControl>

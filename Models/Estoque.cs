@@ -9,9 +9,9 @@ namespace SoftwareFB_DISTRIBUIDORA.BancoDeDados.Models
     public class Estoque
     {
         public int Id { get; set; }
-        public int IdProduto { get; set; }
+        public string Produto { get; set; }
         public int QuantidadeDisponivel { get; set; }
-        public int IdUnidade { get; set; }
+        public string Unidade { get; set; }
         public DateTime UltimaAlteracao { get; set; }
     }
 }

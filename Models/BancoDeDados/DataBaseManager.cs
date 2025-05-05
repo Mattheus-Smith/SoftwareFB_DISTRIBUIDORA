@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using ControlzEx.Theming;
+using MySql.Data.MySqlClient;
 using MySqlX.XDevAPI.Common;
 using SoftwareFB_DISTRIBUIDORA.BancoDeDados.Models;
 using System;
@@ -151,6 +152,49 @@ namespace SoftwareFB_DISTRIBUIDORA.BancoDeDados
                 }
             }
             return produtos;
+        }
+
+        public Produto ObterProdutoPorNome(string NomeProduto)
+        {
+            Produto produto = new Produto();
+            lock (lockBancoDados)
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    string query = @"
+                                SELECT 
+                                    p.Id, p.NomeProduto, c.Descricao AS Categoria,
+                                    p.PrecoUnitario, p.PrecoVenda, 
+                                    p.PorcentagemDeLucro, p.CodigoBarra, p.Ativo
+                                FROM TbProdutos p
+                                INNER JOIN TbCategoria c ON p.IdCategoria = c.Id
+                                WHERE NomeProduto = @nomeProduto";
+
+                    var command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@nomeProduto", NomeProduto);
+
+                    connection.Open();
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            produto = new Produto()
+                            {
+                                Id = reader.GetInt32("id"),
+                                NomeProduto = reader.GetString("nomeProduto"),
+                                Categoria = reader.IsDBNull(reader.GetOrdinal("Categoria")) ? "Desconhecida" : reader.GetString(reader.GetOrdinal("Categoria")),
+                                PrecoUnitario = reader.GetFloat("precoUnitario"),
+                                PrecoVenda = reader.GetFloat("precoVenda"),
+                                PorcentagemDeLucro = reader.IsDBNull(reader.GetOrdinal("porcentagemDeLucro")) ? 0 : reader.GetFloat("PorcentagemDeLucro"),
+                                CodigoBarra = reader.IsDBNull(reader.GetOrdinal("codigoBarra")) ? 0 : reader.GetInt64("codigoBarra"),
+
+                                Ativo = reader.GetBoolean("ativo")
+                            };
+                        }
+                    }
+                }
+            }
+            return produto;
         }
 
         #endregion
@@ -514,8 +558,8 @@ namespace SoftwareFB_DISTRIBUIDORA.BancoDeDados
                 {
                     string query = "INSERT INTO TbEstoque (idProduto, quantidadeDisponivel, idUnidade ,ultimaAlteracao) VALUES (@idProduto, @quantidadeDisponivel, @idUnidade, @ultimaAlteracao)";
                     var command = new MySqlCommand(query, connection);
-                    command.Parameters.AddWithValue("@idProduto", estoque.IdProduto);
-                    command.Parameters.AddWithValue("@idUnidade", estoque.IdUnidade);
+                    command.Parameters.AddWithValue("@idProduto", estoque.Produto);
+                    command.Parameters.AddWithValue("@idUnidade", estoque.Unidade);
                     command.Parameters.AddWithValue("@quantidadeDisponivel", estoque.QuantidadeDisponivel);
                     command.Parameters.AddWithValue("@ultimaAlteracao", estoque.UltimaAlteracao);
 
@@ -538,7 +582,7 @@ namespace SoftwareFB_DISTRIBUIDORA.BancoDeDados
                     var command = new MySqlCommand(query, connection);
                     command.Parameters.AddWithValue("@id", produto.Id);
                     command.Parameters.AddWithValue("@quantidadeDisponivel", produto.QuantidadeDisponivel);
-                    command.Parameters.AddWithValue("@idUnidade", produto.IdUnidade);
+                    command.Parameters.AddWithValue("@idUnidade", produto.Unidade);
                     command.Parameters.AddWithValue("@ultimaAlteracao", produto.UltimaAlteracao);
 
                     connection.Open();
@@ -547,14 +591,19 @@ namespace SoftwareFB_DISTRIBUIDORA.BancoDeDados
             }
         }
 
-        public List<Estoque> ConsultarEstoque()
+        public List<Estoque> ObterTodosOsItensDoEstoque()
         {
             List<Estoque> produtos = new List<Estoque>();
             lock (lockBancoDados)
             {
                 using (var connection = new MySqlConnection(connectionString))
                 {
-                    string query = "SELECT * FROM TbEstoque";
+                    string query = @"SELECT 
+	                                    e.Id, p.nomeProduto AS Produto,
+	                                    e.quantidadeDisponivel, u.descricao AS Unidade
+                                    FROM tbestoque e
+                                    INNER JOIN tbprodutos p ON e.idProduto = p.Id
+                                    INNER JOIN tbunidade u ON e.idUnidade = u.Id";
                     var command = new MySqlCommand(query, connection);
 
                     connection.Open();
@@ -565,10 +614,9 @@ namespace SoftwareFB_DISTRIBUIDORA.BancoDeDados
                             var produto = new Estoque()
                             {
                                 Id = reader.GetInt32("id"),
-                                IdProduto = reader.GetInt32("idProduto"),
+                                Produto = reader.IsDBNull(reader.GetOrdinal("Produto")) ? "Desconhecida" : reader.GetString(reader.GetOrdinal("Produto")),
                                 QuantidadeDisponivel = reader.GetInt32("quantidadeDisponivel"),
-                                IdUnidade = reader.GetInt32("idUnidade"),
-                                UltimaAlteracao = reader.GetDateTime("ultimaAlteracao")
+                                Unidade = reader.IsDBNull(reader.GetOrdinal("Unidade")) ? "Desconhecida" : reader.GetString(reader.GetOrdinal("Unidade")),
                             };
                             produtos.Add(produto);
                         }
