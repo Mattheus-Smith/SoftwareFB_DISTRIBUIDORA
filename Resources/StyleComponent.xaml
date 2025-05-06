@@ -70,8 +70,8 @@
 
 	<!-- Estilo da DataGrid -->
 	<Style x:Key="TabelaProdutosEstilo" TargetType="DataGrid">
-		<Setter Property="AutoGenerateColumns" Value="False"/>
-		<Setter Property="HeadersVisibility" Value="Column"/>
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="HeadersVisibility" Value="Column"/>
 		<Setter Property="GridLinesVisibility" Value="None"/>
 		<Setter Property="BorderThickness" Value="0"/>
 		<Setter Property="CanUserAddRows" Value="False"/>
@@ -88,7 +88,7 @@
 				<Style TargetType="DataGridCell">
 					<Setter Property="BorderThickness" Value="0"/>
 					<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-					<Setter Property="Padding" Value="5,2"/>
+                    <Setter Property="Padding" Value="5,2"/>
 					<Setter Property="HorizontalContentAlignment" Value="Center"/>
 					<Setter Property="Background" Value="Transparent"/>
 				</Style>
@@ -175,7 +175,6 @@
             </Setter.Value>
         </Setter>
     </Style>
-
 
     <Style x:Key="ButtonStyle" TargetType="Button">
         <Setter Property="Background" Value="#3B4C60"/>
