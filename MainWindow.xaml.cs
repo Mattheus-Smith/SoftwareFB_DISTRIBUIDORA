@@ -22,10 +22,10 @@ namespace SoftwareFB_DISTRIBUIDORA
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
-            Sidebar.ItemSelecionado += Sidebar_ItemSelecionado;
             ConteudoArea.Content = new ComandaView();
         }
 
@@ -51,6 +51,41 @@ namespace SoftwareFB_DISTRIBUIDORA
                 case "Configurações":
                     ConteudoArea.Content = new ConfiguracaoView();
                     break;
+            }
+        }
+
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender is ListView list && list.SelectedItem is ListViewItem item)
+            {
+                var tag = item.Tag?.ToString();
+                if (!string.IsNullOrEmpty(tag))
+                {
+                    Sidebar_ItemSelecionado(tag);
+                }
+            }
+        }
+        private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
+        {
+            // Set tooltip visibility
+
+            if (Tg_Btn.IsChecked == true)
+            {
+                tt_comanda.Visibility = Visibility.Collapsed;
+                tt_pdv.Visibility = Visibility.Collapsed;
+                tt_vendas.Visibility = Visibility.Collapsed;
+                tt_produto.Visibility = Visibility.Collapsed;
+                tt_estoque.Visibility = Visibility.Collapsed;
+                tt_configuracoes.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                tt_comanda.Visibility = Visibility.Visible;
+                tt_pdv.Visibility = Visibility.Visible;
+                tt_vendas.Visibility = Visibility.Visible;
+                tt_produto.Visibility = Visibility.Visible;
+                tt_estoque.Visibility = Visibility.Visible;
+                tt_configuracoes.Visibility = Visibility.Visible;
             }
         }
     }

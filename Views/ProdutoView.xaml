@@ -41,7 +41,7 @@
             </Button>
         </Grid>
 
-        <Border Grid.Row="1" Margin="50,0,50,0" CornerRadius="10" Background="#273341" BorderBrush="#CCC" BorderThickness="0">
+        <Border Grid.Row="1" Margin="50,0,50,50" CornerRadius="10" Background="#273341" BorderBrush="#CCC" BorderThickness="0">
             <!-- Tabela de produtos -->
             <DataGrid Grid.Row="1" x:Name="dataGrid1"
                   Margin="10, 10,10,10"

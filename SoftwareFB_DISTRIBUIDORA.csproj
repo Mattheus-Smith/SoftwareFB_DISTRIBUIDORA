@@ -253,7 +253,6 @@
     <Compile Include="ViewModels\EstoqueViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\ProdutoViewModel.cs" />
-    <Compile Include="ViewModels\SidebarViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AddNovoProdutoView.xaml.cs">
       <DependentUpon>AddNovoProdutoView.xaml</DependentUpon>
@@ -278,9 +277,6 @@
     </Compile>
     <Compile Include="Views\ProdutoView.xaml.cs">
       <DependentUpon>ProdutoView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Sidebar.xaml.cs">
-      <DependentUpon>Sidebar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\VendasView.xaml.cs">
       <DependentUpon>VendasView.xaml</DependentUpon>
@@ -338,10 +334,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ProdutoView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Sidebar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
