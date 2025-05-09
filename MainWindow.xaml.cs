@@ -65,6 +65,7 @@ namespace SoftwareFB_DISTRIBUIDORA
                 }
             }
         }
+        
         private void ListViewItem_MouseEnter(object sender, MouseEventArgs e)
         {
             // Set tooltip visibility
