@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SoftwareFB_DISTRIBUIDORA.Views"
+        xmlns:vm="clr-namespace:SoftwareFB_DISTRIBUIDORA.ViewModels"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize"
@@ -36,32 +37,32 @@
 
             <!-- Descrição -->
             <Label Content="Descrição" Style="{DynamicResource LabelStyleComBorda}" HorizontalAlignment="Center" Width="111" Margin="15,50,0,0"/>
-            <TextBox x:Name="txtDescricao" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" Margin="5,50,15,5"/>
+            <TextBox x:Name="txtDescricao" Text="{Binding Produto.NomeProduto, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" Margin="5,50,15,5"/>
 
             <!-- Código de Barra -->
             <Label Content="Código de Barra" Style="{DynamicResource LabelStyleComBorda}" Grid.Row="1" Grid.Column="0" Margin="15,15,5,5"/>
-            <TextBox x:Name="txtCodigoBarra" Grid.Row="1" Grid.Column="1" Margin="5,15,5,5" Grid.ColumnSpan="3"/>
+            <TextBox x:Name="txtCodigoBarra" Text="{Binding Produto.CodigoBarra}" Grid.Row="1" Grid.Column="1" Margin="5,15,5,5" Grid.ColumnSpan="3"/>
 
             <!-- Categoria -->
             <Label Content="Categoria" Style="{DynamicResource LabelStyleComBorda}" Grid.Row="1" Grid.Column="4" Margin="5,15,5,5"/>
-            <ComboBox x:Name="comboCategoria" DisplayMemberPath="Descricao" SelectedValuePath="Id" Grid.Row="1" Grid.Column="5" Margin="5,15,15,5"/>
+            <ComboBox x:Name="comboCategoria" ItemsSource="{Binding Categorias}" DisplayMemberPath="Descricao" SelectedValuePath="Id" SelectedValue="{Binding Produto.Categoria}" Grid.Row="1" Grid.Column="5" Margin="5,15,15,5"/>
 
             <!-- Preço Unitário -->
             <Label Content="Preço Unitário" Style="{DynamicResource LabelStyleComBorda}" Grid.Row="2" HorizontalAlignment="Center" Width="111" Margin="15,15,0,0"/>
-            <TextBox x:Name="txtPrecoUnitario" Grid.Row="2" Grid.Column="1" Margin="5,15,5,5"/>
+            <TextBox x:Name="txtPrecoUnitario" Text="{Binding Produto.PrecoUnitario}" Grid.Row="2" Grid.Column="1" Margin="5,15,5,5"/>
 
             <!-- Preço Venda -->
             <Label Content="Preço de Venda" Style="{DynamicResource LabelStyleComBorda}" Grid.Row="2" Grid.Column="2" Margin="5,15,5,5"/>
-            <TextBox x:Name="txtPrecoVenda" Grid.Row="2" Grid.Column="3" Margin="5,15,5,5"/>
+            <TextBox x:Name="txtPrecoVenda" Text="{Binding Produto.PrecoVenda}" Grid.Row="2" Grid.Column="3" Margin="5,15,5,5"/>
 
             <!-- % Lucro -->
             <Label Content="% Lucro" Style="{DynamicResource LabelStyleComBorda}" Grid.Row="2" Grid.Column="4" Width="75" HorizontalAlignment="Center" Margin="0,15,0,0"/>
-            <TextBox x:Name="txtLucro" Grid.Row="2" Grid.Column="5" Margin="5,15,15,5"/>
+            <TextBox x:Name="txtLucro" Text="{Binding Produto.PorcentagemDeLucro}" Grid.Row="2" Grid.Column="5" Margin="5,15,15,5"/>
 
             <!-- Botões -->
             <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="6"  Orientation="Horizontal" HorizontalAlignment="Center" Margin="20">
-                <Button Content="CANCELAR" Width="100" Height="30" Margin="10" Style="{DynamicResource ButtonStyle}" Click="Cancelar_Click"/>
-                <Button Content="SALVAR" Width="100" Height="30" Margin="10" Style="{DynamicResource ButtonStyle}" Click="Salvar_Click"/>
+                <Button Content="CANCELAR" Width="100" Height="30" Margin="10" Style="{DynamicResource ButtonStyle}" Command="{Binding CancelarCommand}"/>
+                <Button Content="SALVAR" Width="100" Height="30" Margin="10" Style="{DynamicResource ButtonStyle}" Command="{Binding SalvarCommand}"/>
             </StackPanel>
         </Grid>
 

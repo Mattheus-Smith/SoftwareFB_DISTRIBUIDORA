@@ -32,7 +32,7 @@
              Height="40" Margin="20,0,20,0"/>
 
             <Button Grid.Row="1" Grid.Column="1" Style="{DynamicResource addButton}" FontSize="13"
-                         Width="150" Height="40" HorizontalAlignment="Right" Click="AbrirAddProduto_Click"
+                         Width="150" Height="40" HorizontalAlignment="Right" Command="{Binding AbrirAddProdutoCommand}"
                         Margin="0 0 20 0">
                 <StackPanel Orientation="Horizontal">
                     <iconPacks:PackIconModern Kind="Add" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
@@ -102,7 +102,7 @@
                     <DataGridTemplateColumn Header="EDITAR" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Background="Transparent" BorderThickness="0" ToolTip="Editar" Click="BtnEditar_Click">
+                                <Button Background="Transparent" BorderThickness="0" ToolTip="Editar" Command="{Binding DataContext.EditarProdutoCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}">
                                     <iconPacks:PackIconModern Kind="Edit" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
                                 </Button>
                             </DataTemplate>

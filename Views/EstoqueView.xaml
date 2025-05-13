@@ -86,7 +86,7 @@
                     <DataGridTemplateColumn Header="EDITAR" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Background="Transparent" BorderThickness="0" ToolTip="Editar" Click="BtnEditar_Click">
+                                <Button Background="Transparent" BorderThickness="0" ToolTip="Editar" Command="{Binding DataContext.EditarEstoqueCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}">
                                     <iconPacks:PackIconModern Kind="Edit" VerticalAlignment="Center" Margin="0 1 8 0" Width="11" Height="11"/>
                                 </Button>
                             </DataTemplate>

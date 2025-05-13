@@ -29,24 +29,6 @@ namespace SoftwareFB_DISTRIBUIDORA.Views
             DataContext = new EstoqueViewModel();
         }
 
-        private void BtnEditar_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button btn && btn.DataContext is Estoque estoqueSelecionado)
-            {
-                var novaJanela = new EditEstoqueView(estoqueSelecionado);
-
-                bool? resultado = novaJanela.ShowDialog();
-
-                if (resultado == true)
-                {
-                    // Produto foi editado, atualiza a lista
-                    var viewModel = DataContext as EstoqueViewModel;
-                    viewModel?.AtualizarListaDosItensDoEstoque();
-                }
-            }
-
-        }
-
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             var tb = sender as TextBox;

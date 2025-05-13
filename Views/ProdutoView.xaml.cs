@@ -30,38 +30,6 @@ namespace SoftwareFB_DISTRIBUIDORA.Views
 
         }
 
-        private void AbrirAddProduto_Click(object sender, RoutedEventArgs e)
-        {
-            var novaJanela = new AddNovoProdutoView("padrao");
-
-            bool? resultado = novaJanela.ShowDialog();
-
-            if (resultado == true)
-            {
-                // Produto foi adicionado, atualiza a lista
-                var viewModel = DataContext as ProdutoViewModel;
-                viewModel?.AtualizarListaProdutos();
-            }
-        }
-
-        private void BtnEditar_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender is Button btn && btn.DataContext is Produto produtoSelecionado)
-            {
-                var novaJanela = new EditProdutoView(produtoSelecionado);
-
-                bool? resultado = novaJanela.ShowDialog();
-
-                if (resultado == true)
-                {
-                    // Produto foi editado, atualiza a lista
-                    var viewModel = DataContext as ProdutoViewModel;
-                    viewModel?.AtualizarListaProdutos();
-                }
-            }
-            
-        }
-
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             var tb = sender as TextBox;
